@@ -1,0 +1,11 @@
+---
+service: otel-collector
+workloadKind: Deployment
+build:
+  enabled: false
+  dockerfile:
+  context: "."
+  images:
+    dev:
+    prod:
+runtimeDependencies: []
