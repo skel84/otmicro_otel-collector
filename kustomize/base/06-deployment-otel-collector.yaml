@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 3d4dfce0ffec677d92dd7a315f8d77294593db501018c64a1e81a177fc98d716
+        checksum/config: 573d0990fb1dcf0c2fe1e47ab455bbb2f4fb1265e327f3fc606df63f71a0a3b0
         opentelemetry_community_demo: 'true'
         prometheus.io/scrape: 'true'
       labels:
@@ -68,6 +68,11 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
+        - name: COROOT_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: coroot-api-key
+              key: api-key
         - name: GOMEMLIMIT
           value: 160MiB
         livenessProbe:

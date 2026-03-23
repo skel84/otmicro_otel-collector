@@ -28,6 +28,8 @@ data:
           insecure: true
       otlphttp/coroot:
         endpoint: https://coroot.hzpg.connectedcare.io/v1/traces
+        headers:
+          x-api-key: ${env:COROOT_API_KEY}
       otlphttp/prometheus:
         endpoint: http://prometheus:9090/api/v1/otlp
         tls:
