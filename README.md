@@ -16,6 +16,9 @@ The base manifests are namespace-free. Overlays target:
 - dev: `otmicro-dev`
 - prod: `otmicro-prod`
 
+The collector fans traces out to the in-cluster Jaeger backend and to Coroot at
+`https://coroot.hzpg.connectedcare.io/v1/traces`.
+
 ## Build
 
 No primary Dockerfile was detected for this workload. The generated manifests still reference an upstream image.

@@ -133,6 +133,10 @@ exporters:
       insecure: true
     sending_queue:
       batch:
+  otlp_http/coroot:
+    endpoint: "https://coroot.hzpg.connectedcare.io/v1/traces"
+    sending_queue:
+      batch:
   opensearch:
     logs_index: otel-logs
     logs_index_time_format: "yyyy-MM-dd"
@@ -206,7 +210,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [resourcedetection, memory_limiter, transform/sanitize_spans]
-      exporters: [otlp_grpc/jaeger, debug, spanmetrics]
+      exporters: [otlp_grpc/jaeger, otlp_http/coroot, debug, spanmetrics]
     metrics:
       receivers: [docker_stats, httpcheck/frontend-proxy, hostmetrics, nginx, otlp, postgresql, redis, spanmetrics]
       processors: [resourcedetection, memory_limiter]

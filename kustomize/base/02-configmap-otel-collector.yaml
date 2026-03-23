@@ -26,6 +26,8 @@ data:
         endpoint: jaeger-collector:4317
         tls:
           insecure: true
+      otlphttp/coroot:
+        endpoint: https://coroot.hzpg.connectedcare.io/v1/traces
       otlphttp/prometheus:
         endpoint: http://prometheus:9090/api/v1/otlp
         tls:
@@ -176,6 +178,7 @@ data:
         traces:
           exporters:
           - otlp
+          - otlphttp/coroot
           - debug
           - spanmetrics
           processors:
