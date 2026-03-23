@@ -30,6 +30,10 @@ data:
         endpoint: https://coroot.hzpg.connectedcare.io
         headers:
           x-api-key: ${env:COROOT_API_KEY}
+      otlphttp/clickstack:
+        endpoint: ${env:CLICKSTACK_OTLP_ENDPOINT}
+        headers:
+          authorization: ${env:CLICKSTACK_API_KEY}
       otlphttp/prometheus:
         endpoint: http://prometheus:9090/api/v1/otlp
         tls:
@@ -150,6 +154,7 @@ data:
       pipelines:
         logs:
           exporters:
+          - otlphttp/clickstack
           - opensearch
           - debug
           processors:
@@ -162,6 +167,7 @@ data:
           - otlp
         metrics:
           exporters:
+          - otlphttp/clickstack
           - otlphttp/prometheus
           - debug
           processors:
@@ -181,6 +187,7 @@ data:
           exporters:
           - otlp
           - otlphttp/coroot
+          - otlphttp/clickstack
           - debug
           - spanmetrics
           processors:

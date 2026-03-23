@@ -139,6 +139,12 @@ exporters:
       x-api-key: "${env:COROOT_API_KEY}"
     sending_queue:
       batch:
+  otlp_http/clickstack:
+    endpoint: "${env:CLICKSTACK_OTLP_ENDPOINT}"
+    headers:
+      authorization: "${env:CLICKSTACK_API_KEY}"
+    sending_queue:
+      batch:
   opensearch:
     logs_index: otel-logs
     logs_index_time_format: "yyyy-MM-dd"
@@ -212,15 +218,15 @@ service:
     traces:
       receivers: [otlp]
       processors: [resourcedetection, memory_limiter, transform/sanitize_spans]
-      exporters: [otlp_grpc/jaeger, otlp_http/coroot, debug, spanmetrics]
+      exporters: [otlp_grpc/jaeger, otlp_http/coroot, otlp_http/clickstack, debug, spanmetrics]
     metrics:
       receivers: [docker_stats, httpcheck/frontend-proxy, hostmetrics, nginx, otlp, postgresql, redis, spanmetrics]
       processors: [resourcedetection, memory_limiter]
-      exporters: [otlp_http/prometheus, debug]
+      exporters: [otlp_http/clickstack, otlp_http/prometheus, debug]
     logs:
       receivers: [otlp]
       processors: [resourcedetection, memory_limiter]
-      exporters: [opensearch, debug]
+      exporters: [otlp_http/clickstack, opensearch, debug]
   telemetry:
     metrics:
       readers:

@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 0ddf2bc02bd895ea6d4b8843695ad5ea6bccaa5146a23c7bdddd5a8dfa25305b
+        checksum/config: e3ca26afbde60dbde88f238b7d13241d685d707ca06c3d156cc40c6a2466c101
         opentelemetry_community_demo: 'true'
         prometheus.io/scrape: 'true'
       labels:
@@ -68,6 +68,13 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: status.podIP
+        - name: CLICKSTACK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: clickstack-api-key
+              key: api-key
+        - name: CLICKSTACK_OTLP_ENDPOINT
+          value: https://clickstack-otel.hzpg.connectedcare.io
         - name: COROOT_API_KEY
           valueFrom:
             secretKeyRef:
