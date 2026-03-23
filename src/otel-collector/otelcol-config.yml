@@ -134,7 +134,7 @@ exporters:
     sending_queue:
       batch:
   otlp_http/coroot:
-    endpoint: "https://coroot.hzpg.connectedcare.io/v1/traces"
+    endpoint: "https://coroot.hzpg.connectedcare.io"
     headers:
       x-api-key: "${env:COROOT_API_KEY}"
     sending_queue:

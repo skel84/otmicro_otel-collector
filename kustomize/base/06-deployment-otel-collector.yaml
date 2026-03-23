@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 573d0990fb1dcf0c2fe1e47ab455bbb2f4fb1265e327f3fc606df63f71a0a3b0
+        checksum/config: 0ddf2bc02bd895ea6d4b8843695ad5ea6bccaa5146a23c7bdddd5a8dfa25305b
         opentelemetry_community_demo: 'true'
         prometheus.io/scrape: 'true'
       labels:
